@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+    <title>DETI HOLD | Premium Crypto Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Light Mode Variables (Default) */
+        --color-deti-bg: #F8FAFC;       /* Slate 50 */
+        --color-deti-card: #FFFFFF;     /* White */
+        --color-deti-sidebar: #FFFFFF;  /* White */
+        --color-deti-text: #0F172A;     /* Slate 900 */
+        --color-deti-subtext: #64748B;  /* Slate 500 */
+        --color-deti-border: #E2E8F0;   /* Slate 200 */
+        --color-deti-surface: #F1F5F9;  /* Slate 100 */
+        
+        --color-primary: #F59E0B;       /* Brand Orange/Gold (Was Blue) */
+        --color-secondary: #EA580C;     /* Deep Orange */
+        --color-accent: #FBBF24;        /* Light Amber */
+        
+        --color-link: #2563EB;          /* Blue for standard links/info */
+
+        --color-success: #10B981;
+        --color-danger: #EF4444;
+        --color-cyan: #06B6D4;
+        
+        --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.2);
+      }
+
+      .dark {
+        /* Dark Mode Variables */
+        --color-deti-bg: #0B0C15;       /* Deep Dark Blue/Black */
+        --color-deti-card: #14151F;     /* Card Dark */
+        --color-deti-sidebar: #0F1019;  /* Sidebar Dark */
+        --color-deti-text: #FFFFFF;     /* White */
+        --color-deti-subtext: #94A3B8;  /* Slate 400 */
+        --color-deti-border: #262935;   /* Slate 800 */
+        --color-deti-surface: #1E212B;  /* Surface */
+        
+        --shadow-glow: 0 0 25px rgba(245, 158, 11, 0.25);
+      }
+
+      body {
+        background-color: var(--color-deti-bg);
+        color: var(--color-deti-text);
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Hide Scrollbar but allow scrolling */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Custom scrollbar for desktop where needed */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: var(--color-deti-border); 
+        border-radius: 3px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary); 
+      }
+      
+      /* Safe Area Padding for Mobile Bottom Nav */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      
+      .glass {
+        background: rgba(20, 21, 31, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      
+      /* Brand Lighting Effect for Boxes */
+      .brand-lighting-box {
+        position: relative;
+        border: 1px solid rgba(245, 158, 11, 0.2); /* Base visible border */
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.05); /* Subtle base glow */
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .brand-lighting-box:hover {
+        border-color: rgba(245, 158, 11, 0.5); /* Stronger border on hover */
+        box-shadow: 0 0 30px rgba(245, 158, 11, 0.2); /* Stronger glow on hover */
+        transform: translateY(-2px);
+      }
+      
+      .text-brand-gradient {
+        background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Web3 Animations */
+      @keyframes float-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+      @keyframes float-medium {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+      @keyframes float-fast {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(5deg); }
+      }
+      
+      @keyframes grid-flow {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 0% 100%; }
+      }
+
+      @keyframes text-shimmer {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+
+      /* Morph Reveal Animation */
+      .morph-reveal {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        filter: blur(10px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform, filter;
+      }
+      
+      .morph-reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+      
+      /* Stagger delays for child elements */
+      .delay-100 { transition-delay: 0.1s; }
+      .delay-200 { transition-delay: 0.2s; }
+      .delay-300 { transition-delay: 0.3s; }
+      .delay-400 { transition-delay: 0.4s; }
+      .delay-500 { transition-delay: 0.5s; }
+
+      .card-hover-effect {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-hover-effect:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-glow);
+      }
+
+      /* Shiny Button Styles */
+      .shiny-cta {
+        position: relative;
+        display: inline-flex;
+        padding: 2px;
+        border-radius: 9999px;
+        background: transparent;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+      .shiny-cta:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+      }
+
+      .shiny-cta::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: conic-gradient(
+          transparent 0deg,
+          transparent 270deg,
+          #FCD34D 320deg, /* Amber-300 */
+          #F59E0B 360deg  /* Amber-500 */
+        );
+        transform: translate(-50%, -50%);
+        animation: spin-border 3s linear infinite;
+        z-index: 0;
+      }
+      
+      .shiny-cta span {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        height: 100%;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px;
+        background: #0f172a; /* Slate 900 base */
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: background 0.3s ease;
+      }
+
+      .shiny-cta:hover span {
+        background: #1e293b;
+      }
+
+      @keyframes spin-border {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              deti: {
+                bg: 'var(--color-deti-bg)',
+                card: 'var(--color-deti-card)',
+                sidebar: 'var(--color-deti-sidebar)',
+                text: 'var(--color-deti-text)',
+                subtext: 'var(--color-deti-subtext)',
+                border: 'var(--color-deti-border)',
+                surface: 'var(--color-deti-surface)',
+                primary: 'var(--color-primary)',
+                secondary: 'var(--color-secondary)',
+                accent: 'var(--color-accent)',
+                success: 'var(--color-success)',
+                danger: 'var(--color-danger)',
+                cyan: 'var(--color-cyan)',
+              }
+            },
+            backgroundImage: {
+              'gradient-brand': 'linear-gradient(135deg, #F59E0B 0%, #EA580C 100%)', // Gold to Deep Orange
+              'gradient-card': 'linear-gradient(135deg, #27272A 0%, #18181B 100%)', // Neutral Dark
+              'gradient-vip': 'linear-gradient(135deg, #F59E0B 0%, #B45309 100%)',
+            },
+            boxShadow: {
+              'glow': 'var(--shadow-glow)', 
+              'card': '0 10px 40px -10px rgba(0,0,0,0.3)',
+            },
+            animation: {
+              'spin-slow': 'spin 20s linear infinite',
+              'float-slow': 'float-slow 8s ease-in-out infinite',
+              'float-medium': 'float-medium 6s ease-in-out infinite',
+              'float-fast': 'float-fast 4s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'grid-flow': 'grid-flow 20s linear infinite',
+              'text-shimmer': 'text-shimmer 3s ease-in-out infinite alternate',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
